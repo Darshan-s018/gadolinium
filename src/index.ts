@@ -1,15 +1,7 @@
-import jwt from "jsonwebtoken";
+import "dotenv/config";
+import { hono } from "./routes";
+import { serve } from "@hono/node-server";
 
-const payload: jwt.JwtPayload = {
-  iss: "https://puprleshorts.co.in",
-  sub: "Darshans-018",
-  
-  iat: Date.now()
-};
-
-const secretkey = "HelloWorld@123";
-
-const token = jwt.sign(payload, secretkey, { 
-  algorithm: "HS256",
-  expiresIn: "7d" ,
+serve(hono, (info) => {
+  console.log(`Server is running on port ${info.port}`);
 });
